@@ -4,5 +4,5 @@
 int main(int argc, char *argv[])
 {
     char *input_file = argv[1];
-    parser(input_file);
+    const GlobalVar kGlobalVar = parser(input_file);
 }
