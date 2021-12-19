@@ -1,0 +1,40 @@
+- Stage 1: 对Inital结果使用RSMT做Reroute，并预处理Stage 2要用到的信息
+    Reroute(可以先不做):
+    - Routing Region Generation (分割Grid区块)
+        - 解释：使用Block替代Grid作为区域单位，每个Block中有5*5个Grid
+        - Class: Block()
+        - Function: CreateBlock()
+    - RSMT Estimation (大概估计绕线区块)
+        - 解释：根据当前Cell的摆放位置做RSMT，RSMT走过的Block标示为Guide（斜线的话是标记一个正方形区域），绕线会根据Guide来绕
+        - Function: RSMTEstimation()
+    - Cost Calculation (算Cost)
+        - 算出标记为Guide的Block中的所有Grid的Cost
+        - Function: GuideCost()
+        - Function: GridCostCalculation()
+    - Reroute (细部绕线)
+        - 使用HPWL进行排序估算出最长的绕线
+        - 按照排序使用Greedy方式绕线
+        - Function: HPWL()
+        - RSMTRouter()
+    Precompute:
+    - WireLenEstimation (线长估算)
+        - 解释:估算每条Net线长
+        - Function: MinRoutingDistance(Input: Cell, Net, Output: Net.GetWireLenEstimation())
+    - Candidates Pruning (Cell移动区域剪枝选择)
+        - 解释: 使用Median box为每个cell计算出适合的Move区域
+        - Function: CandidateRegionCalculation(Input: Cell, Net, Output: Cell.GetCandidateRegion())
+    - Cell Movement Gain Estimation (Cell移动操作所需的Gain值计算)
+        - 解释: 计算Candidate Region中的Gain值
+        - Function: CellMovementGainEstimation(Input: Cell, Net, Output: )
+    - Choose MoveTarget (根据Gain值对CandidateGrid进行排序)
+        - 解释: 选择所有大于0的Gain的Grid，并做排序
+        - Function: CandidateDestination() 
+- Stage 2: 透过移动Cell并使用A*做Rerouting得到更好的结果
+    - Single Cell Movement (对某个Cell进行搬移)
+        - 解释: 利用Precompute阶段的Choose MoveTarget，根据排序结果选出当前Cell，Gain最大的Target Grid，然后进行搬移
+        - Function: SingleCellMovement()
+    - AStar Partial Rerouting (对搬动的Cell进行重绕线)
+        - Function: AStarRouter()
+    - Net Rerouting (对搬动的Cell相关的其他Cell进行重绕线)
+        - Function: RSMTRouter()
+- Stage 3: 将部分Cell做Put Back并进行最后的Reroute (先不讨论)
