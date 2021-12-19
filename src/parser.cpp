@@ -2,12 +2,12 @@
 #include "parser.h"
 
 /************************************************************************************************************************
-*                                                                                                                       *
-*   CLASS:INTERFACE                                                                                                     *
-*                                                                                                                       *
+*                                                                                                                       
+*   CLASS:INTERFACE                                                                                                     
+*                                                                                                                       
 ************************************************************************************************************************/
 /************************************************************************************************************************
-*   Interface: GlobalVar                                                                                                *
+*   Interface: GlobalVar                                                                                                
 ************************************************************************************************************************/
 int GlobalVar::GetMaxCellMove()                                      { return this->maxcellmove_; }
 GridBoundaryIdx GlobalVar::GetGridBound()                            { return this->gridbound_; }
@@ -26,14 +26,14 @@ vector<Route> GlobalVar::GetRouteVec()                               { return th
 int GlobalVar::GetNumVoltageAreas()                                  { return this->numvoltageareas_; }
 unordered_map<string, VoltageArea> GlobalVar::GetVoltageAreaHash()   { return this->voltagearea_hash_; }
 /***********************************************************************************************************************
-*   Interface: GridBoundaryIdx                                                                                         *
+*   Interface: GridBoundaryIdx                                                                                         
 ************************************************************************************************************************/
 int GridBoundaryIdx::GetRowBeginIdx()                                { return this->rowbeginidx_; }
 int GridBoundaryIdx::GetRowEndIdx()                                  { return this->rowendidx_; }
 int GridBoundaryIdx::GetColBeginIdx()                                { return this->colbeginidx_; }
 int GridBoundaryIdx::GetColEndIdx()                                  { return this->colendidx_; }
 /************************************************************************************************************************
-*   Interface: Layer                                                                                                    *
+*   Interface: Layer                                                                                                    
 ************************************************************************************************************************/
 string Layer::GetName()                                              { return this->name_; }
 int Layer::GetIdx()                                                  { return this->idx_; }
@@ -41,7 +41,7 @@ char Layer::GetRoutingDir()                                          { return th
 int Layer::GetDefaultSupply()                                        { return this->defaultsupply_; }
 float Layer::GetPowerFactor()                                        { return this->powerfactor_; }
 /************************************************************************************************************************
-*   Interface: MasterCell                                                                                               *
+*   Interface: MasterCell                                                                                               
 ************************************************************************************************************************/
 string MasterCell::GetName()                                         { return this->name_; }
 int MasterCell::GetNumPin()                                          { return this->numpin_; }
@@ -49,12 +49,12 @@ int MasterCell::GetNumBlockage()                                     { return th
 vector<MasterCell::Pin> MasterCell::GetPinVec()                      { return this->pin_vec_; }
 vector<MasterCell::Blkg> MasterCell::GetBlkgVec()                    { return this->blkg_vec_; }
 /**********************************************************
-*   Interface: MasterCell::Pin                            *
+*   Interface: MasterCell::Pin                            
 **********************************************************/
 string MasterCell::Pin::GetName()                                    { return this->name_; }
 string MasterCell::Pin::GetLayer()                                   { return this->layer_; }
 /**********************************************************
-*   Interface: MasterCell::Blkg                           *
+*   Interface: MasterCell::Blkg                           
 **********************************************************/
 string MasterCell::Blkg::GetName()                                   { return this->name_; }
 string MasterCell::Blkg::GetLayer()                                  { return this->layer_; }
@@ -65,7 +65,7 @@ int CellInst::GetGridRowIdx()                                        { return th
 int CellInst::GetGridColIdx()                                        { return this->gridcolidx_; }
 bool CellInst::IsMovable()                                           { return this->ismovable_; }
 /************************************************************************************************************************
-*   Interface: Net                                                                                                      *
+*   Interface: Net                                                                                                      
 ************************************************************************************************************************/
 string Net::GetNetName()                                             { return this->netname_; }
 int Net::GetNumPin()                                                 { return this->numpin_; }
@@ -73,12 +73,12 @@ string Net::GetMinRoutingLayConstraint()                             { return th
 vector<Net::Pin> Net::GetPinVec()                                    { return this->pin_vec_; }
 float Net::GetWeight()                                               { return this->weight_; }
 /**********************************************************
-*   Interface: Net::Pin                                   *
+*   Interface: Net::Pin                                   
 **********************************************************/
 string Net::Pin::GetInstName()                                       { return this->instname_; }
 string Net::Pin::GetMasterPinName()                                  { return this->masterpinname_; }
 /************************************************************************************************************************           
-*   Interface: Route                                                                                                    *
+*   Interface: Route                                                                                                    
 ************************************************************************************************************************/
 int Route::GetsRowIdx()                                              { return this->srowidx_; }                     
 int Route::GetsColIdx()                                              { return this->scolidx_; }
@@ -88,7 +88,7 @@ int Route::GeteColIdx()                                              { return th
 int Route::GeteLayIdx()                                              { return this->elayidx_; }
 string Route::GetnetName()                                           { return this->netname_; }
 /************************************************************************************************************************
-*   Interface: VoltageArea                                                                                              *
+*   Interface: VoltageArea                                                                                              
 ************************************************************************************************************************/
 string VoltageArea::GetVoltageAreaName()                             { return this->voltageareaname_; }
 int VoltageArea::GetNumGGrids()                                      { return this->numggrids_; }
@@ -96,22 +96,22 @@ vector<VoltageArea::GGrid> VoltageArea::GetGGridVec()                { return th
 int VoltageArea::GetNumInstances()                                   { return this->numinstances_; }
 vector<VoltageArea::Instance> VoltageArea::GetInstanceVec()          { return this->instance_vec_; }
 /**********************************************************
-*   Interface: VoltageArea::GGrid                         *
+*   Interface: VoltageArea::GGrid                         
 **********************************************************/
 int VoltageArea::GGrid::GetGGridRowIdx()                             { return this->ggridrowidx_; }
 int VoltageArea::GGrid::GetGGridColIdx()                             { return this->ggridcolidx_; }
 /**********************************************************
-*   Interface: VoltageArea::Instance                      *
+*   Interface: VoltageArea::Instance                      
 **********************************************************/
 string VoltageArea::Instance::GetInstanceName()                      { return this->instancename_; }
 
 /************************************************************************************************************************
-*                                                                                                                       *
-*   CLASS:PRINT OVERLOAD                                                                                                *
-*                                                                                                                       *
+*                                                                                                                       
+*   CLASS:PRINT OVERLOAD                                                                                                
+*                                                                                                                       
 ************************************************************************************************************************/
 /************************************************************************************************************************
-*   Print Overload: VoltageArea                                                                                         *
+*   Print Overload: VoltageArea                                                                                         
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const VoltageArea &voltagearea)
 {
@@ -131,7 +131,7 @@ ostream &operator<<(ostream &os, const VoltageArea &voltagearea)
     return os;
 }
 /**********************************************************
-*   Print Overload: VoltageArea::GGrid                    *
+*   Print Overload: VoltageArea::GGrid                    
 **********************************************************/
 ostream &operator<<(ostream &os, const VoltageArea::GGrid &ggrid)
 {
@@ -140,7 +140,7 @@ ostream &operator<<(ostream &os, const VoltageArea::GGrid &ggrid)
     return os;
 }
 /**********************************************************
-*   Print Overload: VoltageArea::Instance                 *
+*   Print Overload: VoltageArea::Instance                 
 **********************************************************/
 ostream &operator<<(ostream &os, const VoltageArea::Instance &instance)
 {
@@ -148,7 +148,7 @@ ostream &operator<<(ostream &os, const VoltageArea::Instance &instance)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: Route                                                                                               *
+*   Print Overload: Route                                                                                               
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const Route &route)
 {
@@ -162,7 +162,7 @@ ostream &operator<<(ostream &os, const Route &route)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: Net                                                                                                 *
+*   Print Overload: Net                                                                                                 
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const Net &net)
 {
@@ -178,7 +178,7 @@ ostream &operator<<(ostream &os, const Net &net)
     return os;
 }
 /**********************************************************
-*   Print Overload: Net::Pin                              *
+*   Print Overload: Net::Pin                              
 **********************************************************/
 ostream &operator<<(ostream &os, const Net::Pin &pin)
 {
@@ -187,7 +187,7 @@ ostream &operator<<(ostream &os, const Net::Pin &pin)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: CellInst                                                                                            *
+*   Print Overload: CellInst                                                                                            
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const CellInst &cellinst)
 {
@@ -210,7 +210,7 @@ ostream &operator<<(ostream &os, const CellInst &cellinst)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: MasterCell                                                                                          *
+*   Print Overload: MasterCell                                                                                          
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const MasterCell &mastercell)
 {
@@ -230,7 +230,7 @@ ostream &operator<<(ostream &os, const MasterCell &mastercell)
     return os;
 }
 /**********************************************************
-*   Print Overload: MasterCell::Blkg                      *
+*   Print Overload: MasterCell::Blkg                      
 **********************************************************/
 ostream &operator<<(ostream &os, const MasterCell::Blkg &blkg)
 {
@@ -240,7 +240,7 @@ ostream &operator<<(ostream &os, const MasterCell::Blkg &blkg)
     return os;
 }
 /**********************************************************
-*   Print Overload: MasterCell::Pin                       *
+*   Print Overload: MasterCell::Pin                       
 **********************************************************/
 ostream &operator<<(ostream &os, const MasterCell::Pin &pin)
 {
@@ -249,7 +249,7 @@ ostream &operator<<(ostream &os, const MasterCell::Pin &pin)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: NonDefaultSupply                                                                                    *
+*   Print Overload: NonDefaultSupply                                                                                    
 ************************************************************************************************************************/
 ostream &operator<<(ostream &os, const NonDefaultSupply &nondefaultsupply)
 {
@@ -260,7 +260,7 @@ ostream &operator<<(ostream &os, const NonDefaultSupply &nondefaultsupply)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: Layer                                                                                               *
+*   Print Overload: Layer                                                                                               
 ************************************************************************************************************************/
 ostream  &operator<<(ostream &os, const Layer &layer)
 {
@@ -272,7 +272,7 @@ ostream  &operator<<(ostream &os, const Layer &layer)
     return os;
 }
 /************************************************************************************************************************
-*   Print Overload: GridBoundaryIdx                                                                                     *
+*   Print Overload: GridBoundaryIdx                                                                                     
 ************************************************************************************************************************/
 ostream  &operator<<(ostream &os, const GridBoundaryIdx &gridbound)
 {
@@ -283,9 +283,9 @@ ostream  &operator<<(ostream &os, const GridBoundaryIdx &gridbound)
     return os;
 }
 /************************************************************************************************************************
-*                                                                                                                       *
-*   FUNCTION:IMPLEMENT                                                                                                  *
-*                                                                                                                       *
+*                                                                                                                       
+*   FUNCTION:IMPLEMENT                                                                                                  
+*                                                                                                                       
 ************************************************************************************************************************/
 GlobalVar parser(const char *filename)
 {
